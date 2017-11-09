@@ -1,117 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style type="text/css">
-.circle{
-	width: 50px;
-	height: 50px;
-	border-radius:50px;
-	border: 1px solid black;
-	background-color:blue;
-	text-align: center;
-	line-height: 45px;
-	font-size: 25px;
-	position:absolute;
-	color:white;
-}
-body{
-	position:absolute;
-	margin: 0px;
-	padding: 0px;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="./CSS/Style.css">
+<meta charset="utf-8">
 </head>
 <body id='bod' >
 	<input type="text" id="kol">
-	<input type="button" value="Add" onclick="add()" id="buton" style="font-size: 15px;">
+	<input type="button" value="Add" onclick="add()" id="buton" style="font-size: 15px;"><br>
+	<input type="text" id="kol1"><br>
+	<input type="button" value="В глубину" style="z-index:100; font-size: 15px; position: absolute;" onclick="dfs(0)" id='gl'>
+	<input type="button" value="В ширину" style="z-index:100; font-size: 15px;position: absolute;left: 90px;" onclick="sh()" id="shr">
+	<input type="text" id="del"  style="z-index:100; position: absolute; top:75px;">
+	<input type="button" id="delet" value="Del" style=" z-index:100;top:75px; position: absolute; font-size: 15px; left:130px;">
 	<canvas id='canvas' style="position: absolute;">
 		
 	</canvas>
-	
-	<script type="text/javascript">
-		 var elem = document.getElementById('canvas');
-    	var canvas = elem.getContext('2d');
-    	elem.width=100;
-    	elem.height=1000;
 
-		koll=document.getElementById("kol");
-		el=document.getElementById("bod");
-		mas=new Array();
-		x=0;
-		y=0;
-		ras=0;
-		num=0;
-		chet=1;
-		id=0;
-		sch=0;
-		n=0;
-		function add(){
-
-			ras=koll.value*25;
-			x=ras;
-			elem.width=ras*2;
-			for(i=0;i<koll.value;i++){
-
-				if(num==chet){	
-					a=mas[chet-1].style.left;
-					a=a.substring(0, a.length-1 );//убераем х
-					a=a.substring(0, a.length - 1);//убераем р
-					a++;a--;
-					ras=a;
-					//alert(ras);
-				y+=100;
-				x=ras/2;
-				chet*=2;
-				num=0;
-			}
-			if(num==0){
-				a=ras-x;
-			}
-			if(num>0){
-			x+=a*2;
-			}
-
-			newDiv=document.createElement("div");
-			newDiv.id="id"+id;
-			newDiv.innerHTML=id++;
-			newDiv.className="circle";
-			newDiv.style.left=x+"px";
-			newDiv.style.top=y+"px";
-
-			el.appendChild(newDiv);
-			mas[i]=newDiv;
-			if(i!=0&&sch<2){
-				x1=mas[n].style.left;
-     			x1=x1.substring(0, x1.length-1 );
-     			x1=x1.substring(0, x1.length-1 );
-     			x1++;x1--;
-     			y1=mas[n].style.top;
-     			y1=y1.substring(0, y1.length-1 );
-     			y1=y1.substring(0, y1.length-1 );
-     			y1++;y1--;
-				canvas.beginPath();
-
-     			canvas.moveTo(x+25,y);
-     			canvas.lineTo(x1+25,y1);
-     			 canvas.lineWidth = 2;
-   				canvas.strokeStyle = 'red';
-    			canvas.stroke();
-    			sch++;
-    		}
-    		if(sch==2){
-    			sch=0;
-    			n++;
-    		}
-			num++;
-			}
-			koll.style.visibility="hidden";
-			buton.style.visibility="hidden";
-
-			k=0;
-			while(mas[k].innerHTML!=5+1){
-			mas[k++].style.color='white';	
-			}
-		};
-	</script>
+	<script src="./JS/script.js"></script>
 </body>
 </html>
